@@ -19,12 +19,15 @@ public class MainActivity<ActivityMainBinding> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =DataBindingUtil.setContenView(activity this,R.layout.activity_main);
+
     }
+
     private void setUpwithViewpager(viewpager viewpager){
       MainActivity.SectionspagerAdapter adapter=new SectionspagerAdapter(getSupportFragmentManager());
       //we need 3 fragment
         viewpager.setAdapter(adapter);
     }
+
     //add this code
     private static class SectionspagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
