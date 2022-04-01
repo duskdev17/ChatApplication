@@ -7,10 +7,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.chatapplication.databinding.ActivityMainBinding;
+import com.example.chatapplication.menu.CallsFragment;
+import com.example.chatapplication.menu.ChatsFragment;
+import com.example.chatapplication.menu.StatusFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        setUpWithViewPager(binding.viewPager);
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
     }
 
     private void setUpWithViewPager(ViewPager viewPager){
       MainActivity.SectionsPagerAdapter adapter=new SectionsPagerAdapter(getSupportFragmentManager());
-      //we need 3 fragments
+      adapter.addFragment(new ChatsFragment(), "Chats");
+      adapter.addFragment(new StatusFragment(), "Status");
+      adapter.addFragment(new CallsFragment(), "Calls");
+
+        //we need 3 fragments
         viewPager.setAdapter(adapter);
     }
 
