@@ -51,6 +51,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public CharSequence getPageTittle(int position) {return mFragmentTitleList.get(position);}
+        public CharSequence getPageTitle(int position) {return mFragmentTitleList.get(position);}
     }
 }
