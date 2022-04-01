@@ -2,9 +2,9 @@
 <layout>
 
 <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -27,19 +27,19 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabBackground="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabIndicator="@color/colorPrimary"
-        app:tabIndicatorHeight="?actionBarSize"
+        app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@android:color/white"
-        app:tabIndicatorColor="@color/colorPrimary"
-        app:tabTextColor="@color/colorPrimary">
+        app:tabIndicatorColor="@android:color/white"
+        app:tabTextColor="@android:color/white">
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:visibility="visible"
-        android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
