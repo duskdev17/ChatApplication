@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.chatapplication.databinding.ActivityMainBinding;
 import com.example.chatapplication.menu.CallsFragment;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         setUpWithViewPager(binding.viewPager);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+        setSupportActionBar(binding.toolbar);
     }
 
     private void setUpWithViewPager(ViewPager viewPager){
@@ -60,5 +64,25 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {return mFragmentTitleList.get(position);}
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        //handle actionbar item click here. The actionbar will
+        //automatically handle clicks on the Home/Up button, so
+        //long as you specify a parent activity in AndroidManifest.xml
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.menu_search: Toast.makeText(MainActivity.this, "Action Search", Toast.LENGTH_LONG).show(); break;
+            case R.id.menu_more: Toast.makeText(MainActivity.this, "Action More", Toast.LENGTH_LONG).show(); break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -11,14 +11,16 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         >
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             app:titleTextColor="@android:color/white"
             app:title="RoyalChat"/>
     </com.google.android.material.appbar.AppBarLayout>
@@ -26,7 +28,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         app:tabBackground="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabIndicator="@color/colorPrimary"
@@ -40,6 +42,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:visibility="visible"
+        android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
