@@ -32,7 +32,19 @@ public class MainActivity extends AppCompatActivity {
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         setSupportActionBar(binding.toolbar);
     }
-
+//sumi
+    bindig.viewpage.addOnPageChangeiistener(new viewPager.OnPageChangeiistener(){
+        @Override
+                public void OnPagescrolled(int position, float positionOffset, int positionOffsetpixels)
+        }
+        @Override
+    public void OnPagescrolled(int position) {
+        changFabICon(posion);
+        }
+        @Override
+    public void OnPagescrollstateChanged(int state) {
+        }
+        }};
     private void setUpWithViewPager(ViewPager viewPager){
       MainActivity.SectionsPagerAdapter adapter=new SectionsPagerAdapter(getSupportFragmentManager());
       adapter.addFragment(new ChatsFragment(), "Chats");
@@ -85,4 +97,21 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //sumi
+    private void changFabICon(final int index)
+        binding.fabAction.hide()
+                new handler().postDelayed(new Runnable() {
+        @Override
+        public void run () {
+            switch (index) {
+                case 0: binding.fabAction.setImagedrawable(getDrawable(R.drawable.ic_chat_black_24));break;
+                case 1: binding.fabAction.setImagedrawable(getDrawable(R.drawable.ic_camera_black_24));break;
+                case 2: binding.fabAction.setImagedrawable(getDrawable(R.drawable.ic_call_black_24));break;
+            }
+            binding.fabAction.show();
+        }
+    }.delaymillis 400);
+    }
+
+
 }

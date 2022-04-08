@@ -42,15 +42,17 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
-        android:visibility="visible"
-        android:layout_marginTop="50dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:visibility="visible"
+        android:layout_below="@id/tab_layout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/tab_action"
         android:src="@android:drawable/stat_notify_chat"
+        android:tint="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
