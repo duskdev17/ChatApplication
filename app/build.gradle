@@ -48,4 +48,5 @@ dependencies {
     //Card View - Implement the Material Design card pattern with round corners and drop shadows.
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
+    implementation 'com.github.bumptech.glide:3.7.0'
 }
