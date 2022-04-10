@@ -47,4 +47,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.0-alpha01'
     //Card View - Implement the Material Design card pattern with round corners and drop shadows.
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'
 }
