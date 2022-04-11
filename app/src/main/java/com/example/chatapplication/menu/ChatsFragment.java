@@ -5,7 +5,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
 import com.example.chatapplication.R;
+import com.example.chatapplication.adapter.ChatlistAdapter;
+import com.example.chatapplication.model.Chatlist;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,11 +61,25 @@ public class ChatsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    private List<Chatlist>list=new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chats, container, false);
+        View view =inflater.inflate(R.layout.fragment_chats, container, false);
+
+        recyclerview=view.findViewById(r.id.recyclerView);
+        recyclerView.setLayoutManaher(new LinearLayout(getContext()));
+
+        getChatlist ();
+        return view;
+    }
+
+    private void getChatlist() {
+
+        list.add(new Chatlist(userID:"11",userName:"shekh hasina",description:"hello frie",date:"11/04/2022",urlProfile:"https://gumlet.assettype.com/nationalherald/2018-12/f0a289f0-3ac6-4ee7-a278-6334e2ba2ec0/bangladesh_polls_sheikh_hasina_wins_new_term_as_prime_minister.jpg?w=1200&h=750&auto=format%2Ccompress&fit=max"));
+        list.add(new Chatlist(userID:"22",userName:"khaleda zia",description:"hello frie",date:"11/04/2022",urlProfile:""));
+        list.add(new Chatlist(userID:"33",userName:"LyMin",description:"hello frie",date:"11/04/2022",urlProfile:""));
+        recyclerView.setADapter(new ChatlistAdapter(new ChatlistAdapter(list.getContext()));
     }
 }
