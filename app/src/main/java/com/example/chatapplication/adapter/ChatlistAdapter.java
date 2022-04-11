@@ -8,35 +8,39 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
 import com.example.chatapplication.model.Chatlist;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
 
-public class ChatlistAdapter extends RecyclerView.Adapter<ChatlistAdapter.Holder>{
-    private List<Chatlist>list;
-    private Context Context;
+public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder>{
+    private List<Chatlist> list;
+    private Context context;
 
-    public ChatlistAdapter(List<Chatlist> list,Context Context) {
+    public ChatListAdapter(List<Chatlist> list,Context context) {
         this.list = list;
-        this.Context=Context;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view= LayoutInflater.from(Context).inflate(R.layout.layout_chat_list,parent,attachToRoot false);
+       View view= LayoutInflater.from(context).inflate(R.layout.layout_chat_list,parent,false);
        return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
+
         Chatlist chatlist= list.get(position);
+
         holder.tvName.setText(chatlist.getUserName());
         holder.tvDesc.setText(chatlist.getDescription());
         holder.tvDate.setText(chatlist.getDate());
-        //for image we need library ....
 
+        //for image we need library ....
         Glide.with(context).load(chatlist.getUrlProfile()).into(holder.profile);
     }
 

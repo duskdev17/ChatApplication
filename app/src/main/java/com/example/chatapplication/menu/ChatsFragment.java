@@ -2,13 +2,16 @@ package com.example.chatapplication.menu;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.chatapplication.R;
-import com.example.chatapplication.adapter.ChatlistAdapter;
+import com.example.chatapplication.adapter.ChatListAdapter;
 import com.example.chatapplication.model.Chatlist;
 
 import java.util.ArrayList;
@@ -62,24 +65,28 @@ public class ChatsFragment extends Fragment {
         }
     }
     private List<Chatlist>list=new ArrayList<>();
+    private RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_chats, container, false);
 
-        recyclerview=view.findViewById(r.id.recyclerView);
-        recyclerView.setLayoutManaher(new LinearLayout(getContext()));
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        getChatlist ();
+        getChatlist();
         return view;
     }
 
     private void getChatlist() {
 
-        list.add(new Chatlist(userID:"11",userName:"shekh hasina",description:"hello frie",date:"11/04/2022",urlProfile:"https://gumlet.assettype.com/nationalherald/2018-12/f0a289f0-3ac6-4ee7-a278-6334e2ba2ec0/bangladesh_polls_sheikh_hasina_wins_new_term_as_prime_minister.jpg?w=1200&h=750&auto=format%2Ccompress&fit=max"));
-        list.add(new Chatlist(userID:"22",userName:"khaleda zia",description:"hello frie",date:"11/04/2022",urlProfile:""));
-        list.add(new Chatlist(userID:"33",userName:"LyMin",description:"hello frie",date:"11/04/2022",urlProfile:""));
-        recyclerView.setADapter(new ChatlistAdapter(new ChatlistAdapter(list.getContext()));
+        list.add(new Chatlist("11","Jannat","Hello, I'm Jannat","12/04/2022","https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg"));
+        list.add(new Chatlist("22","Sumi","Hi, I'm Sumi","12/04/2022","https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg"));
+        list.add(new Chatlist("33","Anik","Yo, I'm Anik","12/04/2022","https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg"));
+        list.add(new Chatlist("44","Tamanna","Hey I'm Tamanna","12/04/2022","https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg"));
+
+        recyclerView.setAdapter(new ChatListAdapter(list, getContext()));
     }
 }

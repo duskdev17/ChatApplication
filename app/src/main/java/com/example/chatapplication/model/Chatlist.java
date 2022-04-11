@@ -9,6 +9,7 @@ public class Chatlist {
 
     public Chatlist(){
     }
+
     public Chatlist(String userID,String userName,String description,String date,String urlProfile){
         this.userID=userID;
         this.userName=userName;
@@ -56,5 +57,4 @@ public class Chatlist {
     public void setUrlProfile(String urlProfile) {
         this.urlProfile = urlProfile;
     }
-}
 }
