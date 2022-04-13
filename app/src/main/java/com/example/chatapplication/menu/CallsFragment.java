@@ -3,12 +3,18 @@ package com.example.chatapplication.menu;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.adapter.CallListAdapter;
+import com.example.chatapplication.model.CallList;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +67,34 @@ public class CallsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calls, container, false);
+        View view  inflater.inflate(R.layout.fragment_calls, container, false);
+        RecyclerView recyclerView=view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        List<CallList>lists = new ArrayList<>();
+        lists.add(new CallList(
+                userID:"001",
+                userName:"Jannat ",
+                date:"12/04/2022",
+                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
+                callType:"missed"));
+        List<CallList>lists = new ArrayList<>();
+        lists.add(new CallList(
+                userID:"001",
+                userName:"Jannat ",
+                date:"12/04/2022",
+                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
+                callType:"income"));
+
+        List<CallList>lists = new ArrayList<>();
+        lists.add(new CallList(
+                userID:"001",
+                userName:"Jannat ",
+                date:"12/04/2022",
+                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
+                callType:"out"));
+
+        recyclerView.setAdapter(new CallListAdapter(list,getContext()));
+        return View;
     }
 }
