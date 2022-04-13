@@ -70,15 +70,6 @@ public class CallsFragment extends Fragment {
         View view  inflater.inflate(R.layout.fragment_calls, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        List<CallList>lists = new ArrayList<>();
-        lists.add(new CallList(
-                userID:"001",
-                userName:"Jannat ",
-                date:"12/04/2022",
-                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
-                callType:"missed"));
-        List<CallList>lists = new ArrayList<>();
         lists.add(new CallList(
                 userID:"001",
                 userName:"Jannat ",
@@ -86,7 +77,19 @@ public class CallsFragment extends Fragment {
                 urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
                 callType:"income"));
 
-        List<CallList>lists = new ArrayList<>();
+        list.add(new CallList(
+                userID:"001",
+                userName:"Jannat ",
+                date:"12/04/2022",
+                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
+                callType:"missed"));
+        lists.add(new CallList(
+                userID:"001",
+                userName:"Jannat ",
+                date:"12/04/2022",
+                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
+                callType:"income"));
+
         lists.add(new CallList(
                 userID:"001",
                 userName:"Jannat ",
