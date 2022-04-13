@@ -10,16 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
-import com.example.chatapplication.model.Chatlist;
+import com.example.chatapplication.model.ChatList;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
 
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder>{
-    private List<Chatlist> list;
+    private List<ChatList> list;
     private Context context;
 
-    public ChatListAdapter(List<Chatlist> list,Context context) {
+    public ChatListAdapter(List<ChatList> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
 
-        Chatlist chatlist= list.get(position);
+        ChatList chatlist= list.get(position);
 
         holder.tvName.setText(chatlist.getUserName());
         holder.tvDesc.setText(chatlist.getDescription());

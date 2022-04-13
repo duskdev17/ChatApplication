@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import com.example.chatapplication.R;
 import com.example.chatapplication.adapter.CallListAdapter;
 import com.example.chatapplication.model.CallList;
+import com.example.chatapplication.model.ChatList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,37 +69,43 @@ public class CallsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view  inflater.inflate(R.layout.fragment_calls, container, false);
+        View view = inflater.inflate(R.layout.fragment_calls, container, false);
+
         RecyclerView recyclerView=view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        lists.add(new CallList(
-                userID:"001",
-                userName:"Jannat ",
-                date:"12/04/2022",
-                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
-                callType:"income"));
 
-        list.add(new CallList(
-                userID:"001",
-                userName:"Jannat ",
-                date:"12/04/2022",
-                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
-                callType:"missed"));
-        lists.add(new CallList(
-                userID:"001",
-                userName:"Jannat ",
-                date:"12/04/2022",
-                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
-                callType:"income"));
+        List<CallList> lists = new ArrayList<>();
 
         lists.add(new CallList(
-                userID:"001",
-                userName:"Jannat ",
-                date:"12/04/2022",
-                urlProfile:"https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg ",
-                callType:"out"));
+                "001",
+                "Jannat",
+                "12/04/2022, 9:33 pm",
+                "https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg",
+                "income"));
 
-        recyclerView.setAdapter(new CallListAdapter(list,getContext()));
-        return View;
+
+        lists.add(new CallList(
+                "001",
+                "Sumi",
+                "12/04/2022, 10:03 am",
+                "https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg",
+                "missed"));
+
+        lists.add(new CallList(
+                "001",
+                "Anik",
+                "12/04/2022, 02:49 pm",
+                "https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg",
+                "missed"));
+
+        lists.add(new CallList(
+                "001",
+                "Tamanna",
+                "12/04/2022, 07:43 am",
+                "https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg",
+                "income"));
+
+        recyclerView.setAdapter(new CallListAdapter(lists,getContext()));
+        return view;
     }
 }

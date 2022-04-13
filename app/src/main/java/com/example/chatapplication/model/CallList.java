@@ -6,17 +6,18 @@ public class CallList {
     private String date;
     private String urlProfile;
     private String callType;
+    private String description;
 
     public  CallList(){
 
     }
-    public CallList(String userID,String userName, String date,  String urlProfile,String callType )
-    {
-        this.userID=userID;
-        this.userName=userName;
-        this.date=date;
-        this.urlProfile =urlProfile  ;
-        this.callType= callType ;
+
+    public CallList(String userID,String userName, String date, String urlProfile,String callType ){
+        this.userID = userID;
+        this.userName = userName;
+        this.date = date;
+        this.urlProfile = urlProfile;
+        this.callType = callType ;
     }
 
     public String getUserID() {
@@ -57,5 +58,9 @@ public class CallList {
 
     public void setUrlProfile(String urlProfile) {
         this.urlProfile = urlProfile;
+    }
+
+    public String getCallType() {
+        return callType;
     }
 }

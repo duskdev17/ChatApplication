@@ -1,16 +1,16 @@
 package com.example.chatapplication.model;
 
-public class Chatlist {
+public class ChatList {
     private String userID;
     private String userName;
     private String description;
     private String date;
     private String urlProfile;
 
-    public Chatlist(){
+    public ChatList(CallList jannat){
     }
 
-    public Chatlist(String userID,String userName,String description,String date,String urlProfile){
+    public ChatList(String userID,String userName,String description,String date,String urlProfile){
         this.userID=userID;
         this.userName=userName;
         this.description=description;
