@@ -63,7 +63,7 @@ public class ChatsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    private List<ChatList> list = new ArrayList<>();
+
     private RecyclerView recyclerView;
 
     @Override
@@ -71,15 +71,9 @@ public class ChatsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chats, container, false);
-
+        List<ChatList> list = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        getChatlist();
-        return view;
-    }
-
-    private void getChatlist() {
 
         list.add(new ChatList("11","Jannat","Hello, I'm Jannat","12/04/2022","https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg"));
         list.add(new ChatList("22","Sumi","Hi, I'm Sumi","12/04/2022","https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg"));
@@ -87,5 +81,7 @@ public class ChatsFragment extends Fragment {
         list.add(new ChatList("44","Tamanna","Hey I'm Tamanna","12/04/2022","https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg"));
 
         recyclerView.setAdapter(new ChatListAdapter(list, getContext()));
+
+        return view;
     }
 }
