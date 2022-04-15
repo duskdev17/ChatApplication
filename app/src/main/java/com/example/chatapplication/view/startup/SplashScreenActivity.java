@@ -1,4 +1,4 @@
-package com.example.chatapplication.view.starup;
+package com.example.chatapplication.view.startup;
 
 import androidx.appcompat.app.AppCompatActivity;
 

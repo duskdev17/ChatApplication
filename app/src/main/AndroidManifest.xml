@@ -17,10 +17,10 @@
             android:name=".view.auth.PhoneLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.starup.WelcomeScreenActivity"
+            android:name=".view.startup.WelcomeScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".view.starup.SplashScreenActivity"
+            android:name=".view.startup.SplashScreenActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

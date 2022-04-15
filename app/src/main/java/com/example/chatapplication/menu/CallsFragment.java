@@ -18,19 +18,11 @@ import com.example.chatapplication.model.ChatList;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CallsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CallsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -38,15 +30,6 @@ public class CallsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CallsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CallsFragment newInstance(String param1, String param2) {
         CallsFragment fragment = new CallsFragment();
         Bundle args = new Bundle();
@@ -96,7 +79,7 @@ public class CallsFragment extends Fragment {
                 "Anik",
                 "12/04/2022, 02:49 pm",
                 "https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg",
-                "missed"));
+                "out"));
 
         lists.add(new CallList(
                 "001",

@@ -1,4 +1,4 @@
-package com.example.chatapplication.view.starup;
+package com.example.chatapplication.view.startup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,9 +18,9 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        Button btnAgree=findViewById(R.id.btn_agree);
+        Button btn_agree = findViewById(R.id.btn_agree);
 
-        btnAgree.setOnClickListener(new View.OnClickListener() {
+        btn_agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(WelcomeScreenActivity.this, PhoneLoginActivity.class));
