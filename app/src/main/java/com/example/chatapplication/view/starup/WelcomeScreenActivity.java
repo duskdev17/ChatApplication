@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.chatapplication.view.MainActivity;
 import com.example.chatapplication.R;
+import com.example.chatapplication.view.auth.PhoneLoginActivity;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
 
@@ -22,8 +23,8 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(WelcomeScreenActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeScreenActivity.this, PhoneLoginActivity.class));
             }
-        }};
+        });
     }
 }
