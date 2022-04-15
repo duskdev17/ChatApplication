@@ -1,4 +1,4 @@
-package com.example.chatapplication;
+package com.example.chatapplication.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityMainBinding;
 import com.example.chatapplication.menu.CallsFragment;
 import com.example.chatapplication.menu.ChatsFragment;

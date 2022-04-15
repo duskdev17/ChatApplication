@@ -1,4 +1,4 @@
-package com.example.chatapplication;
+package com.example.chatapplication.view.starup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.chatapplication.R;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this,MainActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, WelcomeScreenActivity.class));
                 finish();
             }
         }, 2000);
