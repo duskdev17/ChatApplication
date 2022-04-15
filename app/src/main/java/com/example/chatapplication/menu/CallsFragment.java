@@ -13,48 +13,14 @@ import android.view.ViewGroup;
 import com.example.chatapplication.R;
 import com.example.chatapplication.adapter.CallListAdapter;
 import com.example.chatapplication.model.CallList;
-import com.example.chatapplication.model.ChatList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< Updated upstream
-public class CallsFragment extends Fragment {
-=======
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CallsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class  CallsFragment extends Fragment {
->>>>>>> Stashed changes
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     public CallsFragment() {
         // Required empty public constructor
-    }
-
-    public static CallsFragment newInstance(String param1, String param2) {
-        CallsFragment fragment = new CallsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override

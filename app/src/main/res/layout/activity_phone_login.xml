@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -40,34 +39,25 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="20dp"
-
         android:orientation="vertical">
-<<<<<<< Updated upstream
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textColor="@android:color/black"
         android:text="Royal chat will send an SMS to verify your phone number."/>
-=======
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="RoyalChat will send an SMS to verify your phone number."/>
 
->>>>>>> Stashed changes
         <Spinner
             android:id="@+id/spinner_country"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
@@ -83,8 +73,7 @@
                 android:inputType="number"
                 android:maxLength="5"
                 android:maxLines="1"
-                android:hint="88"
-                />
+                android:hint="880" />
             <EditText
                 android:id="@+id/ed_phone"
                 android:layout_width="200dp"
@@ -100,9 +89,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="15dp"
-
-            android:text="Carrie SMS charge may apply"/>
-
+            android:text="Carrier SMS charges may apply"/>
 
     </LinearLayout>
     
@@ -113,9 +100,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:textColor="@android:color/white"
-        android:text="next"/>
+        android:text="Next"/>
+
 </RelativeLayout>
 
 </layout>
