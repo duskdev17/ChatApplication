@@ -18,7 +18,16 @@ import com.example.chatapplication.model.ChatList;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< Updated upstream
 public class CallsFragment extends Fragment {
+=======
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link CallsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class  CallsFragment extends Fragment {
+>>>>>>> Stashed changes
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
