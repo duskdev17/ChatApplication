@@ -33,7 +33,7 @@
             android:padding="15dp"
             android:textSize="16sp"
             android:gravity="center"
-            android:text="Read our Privacy Policy.Tap Agree and Continue to accept the Terms of Service"/>
+            android:text="Read our Privacy Policy. Tap Agree and Continue to accept the Terms of Service"/>
 
         <Button
             android:id="@+id/btn_agree"

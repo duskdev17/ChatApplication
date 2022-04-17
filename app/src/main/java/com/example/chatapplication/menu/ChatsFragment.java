@@ -33,10 +33,10 @@ public class ChatsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list.add(new ChatList("11","Jannat","Hello, I'm Jannat","12/04/2022","https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg"));
-        list.add(new ChatList("22","Sumi","Hi, I'm Sumi","12/04/2022","https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg"));
-        list.add(new ChatList("33","Anik","Yo, I'm Anik","12/04/2022","https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg"));
-        list.add(new ChatList("44","Tamanna","Hey I'm Tamanna","12/04/2022","https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg"));
+        list.add(new ChatList("11","Jannat","Hello, I'm Jannat","17/04/2022","https://w0.peakpx.com/wallpaper/262/819/HD-wallpaper-female-anonymous-blue-eyes-character-drawings-girl-hat-mask-scary.jpg"));
+        list.add(new ChatList("22","Sumi","Hi, I'm Sumi","25/03/2022","https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg"));
+        list.add(new ChatList("33","Anik","Yo, I'm Anik","18/03/2022","https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg"));
+        list.add(new ChatList("44","Tamanna","Hey I'm Tamanna","09/03/2022","https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg"));
 
         recyclerView.setAdapter(new ChatListAdapter(list, getContext()));
 
