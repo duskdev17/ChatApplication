@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityPhoneLoginBinding;
+import com.example.chatapplication.view.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -46,6 +48,7 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_phone_login);
 
+
         //getting the instance of Spinner and applying onItemSelectedListener on it
         Spinner spin = findViewById(R.id.spinner_country);
         spin.setOnItemSelectedListener(this);
@@ -56,17 +59,26 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
 
+
         //
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
+
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setMessage("Please Wait");
+                if(binding.btnNext.getText().toString().equals("Next")) {
+                    progressDialog.setMessage("Please Wait");
+                    progressDialog.show();
 
-                String phone = binding.edPhone.getText().toString();
-                startPhoneNumberVerification(phone);
+                    String phone = "+"+binding.edCodeCountry.getText().toString()+binding.edPhone.getText().toString();
+                    startPhoneNumberVerification(phone);
+                }
+                else{
+                    progressDialog.setMessage("Verifying..");
+                    verifyPhoneNumberWithCode(mVerificationId, binding.edCode.getText().toString());
+                }
             }
         });
 
@@ -75,13 +87,13 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 Log.d(TAG, "onVerificationCompleted: Complete");
-                progressDialog.dismiss();
                 signInWithPhoneAuthCredential(phoneAuthCredential);
+                progressDialog.dismiss();
             }
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-
+                Log.d(TAG, "onVerificationFailed: "+e.getMessage());
             }
 
             @Override
@@ -96,8 +108,8 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                 mVerificationId = verificationId;
                 mResendToken = token;
 
-                // Update UI
-                //startPhoneNumberVerification(mVerificationId);
+                binding.btnNext.setText("Continue");
+                progressDialog.dismiss();
             }
 
         };
@@ -116,16 +128,6 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         //mVerificationInProgress = true;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-        Toast.makeText(getApplicationContext(), country[position], Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent){
-
-    }
-
     private void verifyPhoneNumberWithCode(String VerificationId, String code){
         //[START verify_with_code]
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationId, code);
@@ -133,18 +135,22 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         signInWithPhoneAuthCredential(credential);
     }
 
+
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
+                            startActivity(new Intent(PhoneLoginActivity.this, MainActivity.class));
                         }
                         else {
+                            progressDialog.dismiss();
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -155,6 +161,17 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                         }
                     }
                 });
+    }
+    //END sign_in_with_phone
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+        Toast.makeText(getApplicationContext(), country[position], Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent){
+
     }
 
 }
