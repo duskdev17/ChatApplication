@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +41,9 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private ProgressDialog progressDialog;
+
+    private FirebaseAuth firebaseuser;
+    private FirebaseFirestore firestore;
 
     String[] country = {"Bangladesh", "Russia", "Palestine", "China", "Turkey", "Japan", "Iran", "USA", "KSA", "Other"};
 
@@ -62,6 +66,7 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
 
         //
         mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         progressDialog = new ProgressDialog(this);
 
@@ -147,7 +152,11 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
-                            startActivity(new Intent(PhoneLoginActivity.this, MainActivity.class));
+                            if (user != null) {
+                                String userId = user.getUid();
+                                user users = new users("","",)
+                            }
+                            //startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
                         }
                         else {
                             progressDialog.dismiss();
