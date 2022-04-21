@@ -18,6 +18,7 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityPhoneLoginBinding;
 import com.example.chatapplication.view.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +27,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.w3c.dom.Document;
 
 import java.util.concurrent.TimeUnit;
 
@@ -146,20 +150,40 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
-                            progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
                             if (user != null) {
                                 String userId = user.getUid();
-                                user users = new users("","",)
+                                user users = new users(userId,
+                                        userName:"",
+                                        user.getPhoneNumber()
+                                        imageProfile:"",
+                                        imageCover:"",
+                                        email:"",
+                                        dateOfBirth:"",
+                                        gender:"",
+                                        status:"",
+                                        bio:"");
+                                firestore.collection(collectionPath:"users").document(documentPath: "userInfo").collection (userId)
+                                        .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>()
+                                        {
+                                            @Override
+                                            public void  onSuccess(DocumentReference documentReference);
+
+                                            {
+                                                startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
+
+                                            }
+                                        });
+
                             }
                             //startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
                         }
                         else {
-                            progressDialog.dismiss();
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
