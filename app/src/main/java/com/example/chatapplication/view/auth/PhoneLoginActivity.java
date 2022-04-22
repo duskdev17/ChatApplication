@@ -180,6 +180,9 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                                             }
                                         });
 
+                            } else {
+                                Toast.makeText(getApplicationContext(), "somthing Error",Toast.LENGTH_SHORT).show();
+
                             }
                             //startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
                         }
