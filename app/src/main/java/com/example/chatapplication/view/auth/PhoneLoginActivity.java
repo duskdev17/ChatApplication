@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityPhoneLoginBinding;
-import com.example.chatapplication.view.MainActivity;
+import com.example.chatapplication.model.user.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -29,8 +29,6 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Document;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +44,7 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
 
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth firebaseuser;
+    private FirebaseUser firebaseUser;
     private FirebaseFirestore firestore;
 
     String[] country = {"Bangladesh", "Russia", "Palestine", "China", "Turkey", "Japan", "Iran", "USA", "KSA", "Other"};
@@ -68,9 +66,14 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         spin.setAdapter(aa);
 
 
-        //
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null){
+            startActivity(new Intent(this, SetUserInfoActivity.class));
+        }
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -154,34 +157,32 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-
                             FirebaseUser user = task.getResult().getUser();
+
                             if (user != null) {
                                 String userId = user.getUid();
-                                user users = new users(userId,
-                                        userName:"",
-                                        user.getPhoneNumber()
-                                        imageProfile:"",
-                                        imageCover:"",
-                                        email:"",
-                                        dateOfBirth:"",
-                                        gender:"",
-                                        status:"",
-                                        bio:"");
-                                firestore.collection(collectionPath:"users").document(documentPath: "userInfo").collection (userId)
-                                        .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>()
-                                        {
-                                            @Override
-                                            public void  onSuccess(DocumentReference documentReference);
+                                Users users = new Users(userId,
+                                        "",
+                                user.getPhoneNumber(),
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "",
+                                "");
 
-                                            {
-                                                startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
+                                firestore.collection("Users").document("UserInfo").collection (userId)
+                                        .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference){
+                                                startActivity(new Intent(PhoneLoginActivity.this, SetUserInfoActivity.class));
 
                                             }
                                         });
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "somthing Error",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Something Error",Toast.LENGTH_SHORT).show();
 
                             }
                             //startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));

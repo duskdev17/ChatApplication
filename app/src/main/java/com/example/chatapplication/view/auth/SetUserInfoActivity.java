@@ -1,5 +1,6 @@
 package com.example.chatapplication.view.auth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -13,7 +14,13 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySetUserInfoBinding;
+import com.example.chatapplication.model.user.Users;
 import com.example.chatapplication.view.MainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SetUserInfoActivity extends AppCompatActivity {
 //sumi
@@ -23,17 +30,19 @@ public class SetUserInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(Activity this, R.layout.activity_set_user_info);
-        progressDialog = new ProgressDialog()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_set_user_info);
+        progressDialog = new ProgressDialog(this);
+
         initButtonClick();
     }
+
     private void initButtonClick() {
-        binding.btnNext.setOnClickListener(new View().OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v){
                 if (TextUtils.isEmpty(binding.edName.getText().toString())){
-                    Toast.makeText(getApplicationContext(), text:"Please input username",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please input Username",Toast.LENGTH_SHORT).show();
                 } else {
                     doUpdate();
                 }
@@ -43,9 +52,9 @@ public class SetUserInfoActivity extends AppCompatActivity {
         binding.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //pickImaage();
-                  //I will do next video
-                Toast.makeText(getApplicationContext(), text:"this function is not ready to use",Toast.LENGTH_SHORT).show();
+                //pickImage();
+
+                Toast.makeText(getApplicationContext(), "This function is not ready to use",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -53,22 +62,42 @@ public class SetUserInfoActivity extends AppCompatActivity {
     ///
     progressDialog.setMessage("Please Wait");
     progressDialog.show();
+
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     if (firebaseUser != null) {
-       firebaseFirestore.collection(collectionPath:"Users").document(firebaseUser.getUid()).update(field: "Username",bindinf.edName.getText().toString())  //problemsumi
-        .addOnSuccessfulListener(new OnSuccessListener<void>() {
+        String userId = firebaseUser.getUid();
+        Users users = new Users(userId,
+                binding.edName.getText().toString(),
+                firebaseUser.getPhoneNumber(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "");
+
+       firebaseFirestore.collection("Users").document(firebaseUser.getUid()).set(users)
+               //update("Username",binding.edName.getText().toString())
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid){
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(),text: "UpdateSuccessfull", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "UpdateSuccessful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }
-        });
+        }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+               progressDialog.dismiss();
+               Toast.makeText(getApplicationContext(), "Update Failed :"+e.getMessage(), Toast.LENGTH_SHORT).show();
+           }
+       });
 
       } else{
-        Toast.makeText(getApplicationContext(), text: "you need to log in first", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "you need to log in first", Toast.LENGTH_SHORT).show();
         progressDialog.dismiss();
         }
     }
