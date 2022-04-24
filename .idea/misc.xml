@@ -6,9 +6,11 @@
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.149" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.157" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.1" />
+        <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_vpn_key_24.xml" value="0.1515" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_phone_login.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_set_user_info.xml" value="0.264" />
+        <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_settings.xml" value="0.22826086956521738" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_splashscreen2.xml" value="0.14583333333333334" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_welcome_screen.xml" value="0.264" />

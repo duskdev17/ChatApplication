@@ -34,7 +34,7 @@ public class  CallsFragment extends Fragment {
 
         List<CallList> lists = new ArrayList<>();
 
-        lists.add(new CallList(
+       /* lists.add(new CallList(
                 "001",
                 "Jannat",
                 "12/04/2022, 9:33 pm",
@@ -61,9 +61,9 @@ public class  CallsFragment extends Fragment {
                 "Tamanna",
                 "12/04/2022, 07:43 am",
                 "https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg",
-                "income"));
+                "income"));*/
 
-        recyclerView.setAdapter(new CallListAdapter(lists,getContext()));
+        //recyclerView.setAdapter(new CallListAdapter(lists,getContext()));
         return view;
     }
 }
