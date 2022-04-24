@@ -158,33 +158,34 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
+                            startActivity(new Intent(PhoneLoginActivity.this, SetUserInfoActivity.class));
 
-                            if (user != null) {
-                                String userId = user.getUid();
-                                Users users = new Users(userId,
-                                        "",
-                                user.getPhoneNumber(),
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "");
+                            //if (user != null) {
+                            //    String userId = user.getUid();
+                            //    Users users = new Users(userId,
+                            //            "",
+                            //    user.getPhoneNumber(),
+                            //    "",
+                            //    "",
+                            //    "",
+                            //    "",
+                            //    "",
+                            //    "",
+                            //    "");
 
-                                firestore.collection("Users").document("UserInfo").collection (userId)
-                                        .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference){
-                                                startActivity(new Intent(PhoneLoginActivity.this, SetUserInfoActivity.class));
+                            //    firestore.collection("Users").document("UserInfo").collection (userId)
+                            //           .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            //                @Override
+                            //                public void onSuccess(DocumentReference documentReference){
+                            //
+                            //                }
+                            //            });
 
-                                            }
-                                        });
+                            //} else {
+                            //    Toast.makeText(getApplicationContext(), "Something Error",Toast.LENGTH_SHORT).show();
+                            //}
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Something Error",Toast.LENGTH_SHORT).show();
 
-                            }
                             //startActivity(new Intent(PhoneLoginActivity.this,SetUserInfoActivity.class));
                         }
                         else {
