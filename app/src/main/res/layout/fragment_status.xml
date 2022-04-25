@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#D3D3D3"
     tools:context=".menu.StatusFragment">
@@ -29,7 +30,7 @@
                 android:background="@android:color/white"
                 android:layout_alignBottom="@id/image_profile"
                 android:layout_alignEnd="@id/image_profile"
-                android:tint="@color/colorPrimary"
+                app:tint="@color/colorPrimary"
                 android:src="@drawable/ic_baseline_add_circle_outline_24"
                 />
         </RelativeLayout>
