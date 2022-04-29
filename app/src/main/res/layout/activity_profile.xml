@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,8 +45,8 @@
             android:layout_alignBottom="@+id/image_profile"
             android:layout_alignEnd="@+id/image_profile"
             android:tint="@android:color/white"/>
-
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,11 +95,12 @@
 
 
                 <TextView
+                    android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@android:color/black"
-                    android:text="Username"/>
+                    android:text="UserName"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +127,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 app:tint="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_person_24"/>
+                android:src="@drawable/ic_baseline_info_24"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,9 +147,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:textColor="#292727"
-                        android:text="Name"/>
+                        android:text="About"/>
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_edit_24"
@@ -159,20 +161,12 @@
 
 
                 <TextView
+                    android:id="@+id/tv_about"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@android:color/black"
-                    android:text="Username"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textSize="13sp"
-                    android:textColor="#292727"
-                    android:text="This is not your username or pin.This name will be visible to your contacts"/>
-
+                    android:text="Hey wellcome My profile"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -190,7 +184,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 app:tint="@color/colorPrimary"
-                android:src="@drawable/ic_baseline_person_24"/>
+                android:src="@drawable/ic_baseline_call_24"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -210,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:textColor="#292727"
-                        android:text="Name"/>
+                        android:text="Phone"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -220,24 +214,13 @@
                         android:background="@android:color/transparent"
                         />
                 </LinearLayout>
-
-
-
                 <TextView
+                    android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:textColor="@android:color/black"
-                    android:text="Username"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textSize="13sp"
-                    android:textColor="#292727"
-                    android:text="This is not your username or pin.This name will be visible to your contacts"/>
-
+                    android:text="+### #### ####"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -248,3 +231,4 @@
 
     </LinearLayout>
 </LinearLayout>
+</layout>
