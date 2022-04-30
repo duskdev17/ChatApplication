@@ -33,6 +33,7 @@ import android.webkit.MimeTypeMap;
 >>>>>>> Stashed changes
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityProfileBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -53,6 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
 
     private BottomSheetDialog bottomSheetDialog;
+    private ProgressDialog progressDialog;
+
     private int IMAGE_GALLERY_REQUEST = 111;
     private  Uri imageUri;
 
@@ -71,6 +74,8 @@ private int IMAGE_GALLERAY_REQUEST=111;
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
+        ProgressDialog = new ProgressDialog(context: this);
+
         if (firebaseUser!=null){
 
             getInfo();
@@ -144,8 +149,11 @@ private void showBottomsheetpickphoto() {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String username = documentSnapshot.getString(field:"userName");
                 String userPhone = documentSnapshot.getString(field:"userPhone");
+                String imageProfile = documentSnapshot.getString(field:"imageProfile");
+
                 binding.tvUsername.setText(username);
                 binding.tvPhone.setText(userPhone);
+                Glide.with(ProfileActivity.this).load(imageProfile).into(binding.imageProfile);
 
 
             }
@@ -205,12 +213,42 @@ private void showBottomsheetpickphoto() {
 
     private void uploadToFirebase() {
         if (imageUri!=null){
-            StorageReference riversRef=FirebaseFirestore.getInstance().getReference().child("imagesProfile/"+System.currentTimeMillis()+"-"+getFileExtention(mFileProfileUri));
+        ProgressDialog.setMassage("Uploading...");
+        progressDialog.show();
+        StorageReference riversRef=FirebaseFirestore.getInstance().getReference().child("imagesProfile/"+System.currentTimeMillis()+"-"+getFileExtention(imageUri));
+            riversRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()){
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
+                    Task<Uri> urlTask = TaskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.issuccessful())
+                     Uri downloasUrl = urlTask.getResulr();
+
+                    final string sdownload_url =string .valueof(downloadUrl);
+
+                    HashMap<string,Object>hashMap = new HasgMap<>();
+                    hashMap.put("imageProfile",sdownload_url);
+        progressDialog.dismiss();
+        firestore.collection (collection Path:"users").document (firebaseUser.getUid()).update (hashMap)
+
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                     @Override
+
+                    public void onSuccess(Void avoid){
+        Toast.maketext(getApplicationcontext(),text:"upload successfully",Toast.LENGTH_SHORT ).show();
+
+         getInfo();
+        }
+        });
+        }
+        }).addOnOnFailureListener(new OnFailureListener(){
+            @Override
+public void OnFailure(@NonNull Exception e){
+        Toast.maketext(getApplicationcontext(),text:"upload Faild",Toast.LENGTH_SHORT ).show();
+        progressDialog.dismiss();
+
+        }
+        });
         }
     }
-
-<<<<<<< Updated upstream
-=======
->>>>>>> e4020a46ded9dd8b3ef2e3a9bb6564bf1f1527b3
->>>>>>> Stashed changes
 }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySetUserInfoBinding;
 import com.example.chatapplication.databinding.ActivitySettingsBinding;
@@ -59,7 +60,10 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String userName = Objects.requireNonNull(documentSnapshot.get("userName")).toString();
+                String imageProfile = documentSnapshot.getString(field:"imageProfile");
+
                 binding.tvUsername.setText(userName);
+                Glide.with(SettingsActivity.this).load(imageProfile).into(binding.imageProfile);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
