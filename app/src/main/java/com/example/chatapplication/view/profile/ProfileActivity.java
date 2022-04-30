@@ -1,15 +1,23 @@
 package com.example.chatapplication.view.profile;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
+import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityProfileBinding;
@@ -20,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -30,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
 
     private BottomSheetDialog bottomSheetDialog;
+    private int IMAGE_GALLERY_REQUEST = 111;
+    private  Uri imageUri;
 
 
 
@@ -67,6 +78,19 @@ public class ProfileActivity extends AppCompatActivity {
 
 private void showBottomsheetpickphoto() {
     @SuppressLint("inflateParams") view view = getLayoutInflater().inflate(R.layout.bottom_sheet_pick, null);
+    ((view)view.findViewById(R.id.in_gallary)).setOnClickListener(new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View view)
+        {
+            openGallery();
+            bottomSheetDialog.dismiss();
+        }
+    });
+    ((view)view.findViewById(R.id.in_camera)).setOnClickListener((View)
+            {
+                    Toast.makeText(getApplicationContext(),"camera",Toast.LENGTH_SHORT).show();
+            });
 
     bottomSheetDialog= new bottomSheetDialog(context: this);
     bottomSheetDialog.setContentView(view);
@@ -103,4 +127,40 @@ private void showBottomsheetpickphoto() {
             }
         });
     }
+    private void openGallery() {
+        Intent intent =new Intent();
+        intent.setType("image/");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "select image"),IMAGE_GALLERY_REQUEST);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+    super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == IMAGE_GALLERY_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData()!=null)
+        {
+         imageUri =data.getData();
+         uploadToFirebase();
+        /* try {
+             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
+             binding.imageProfile.setImageBitmap(bitmap); }
+         catch (Exception e){
+             e.printStackTrace();
+         }*/
+        }
+    }
+    private String getFileExtention(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private void uploadToFirebase() {
+        if (imageUri!=null){
+            StorageReference riversRef=FirebaseFirestore.getInstance().getReference().child("imagesProfile/"+System.currentTimeMillis()+"-"+getFileExtention(mFileProfileUri));
+        }
+    }
+
 }
