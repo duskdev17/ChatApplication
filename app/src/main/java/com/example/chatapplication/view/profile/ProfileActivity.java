@@ -10,13 +10,27 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< Updated upstream
 import android.graphics.Bitmap;
+=======
+<<<<<<< HEAD
+=======
+import android.graphics.Bitmap;
+>>>>>>> e4020a46ded9dd8b3ef2e3a9bb6564bf1f1527b3
+>>>>>>> Stashed changes
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.WindowManager;
+<<<<<<< Updated upstream
 import android.webkit.MimeTypeMap;
+=======
+<<<<<<< HEAD
+=======
+import android.webkit.MimeTypeMap;
+>>>>>>> e4020a46ded9dd8b3ef2e3a9bb6564bf1f1527b3
+>>>>>>> Stashed changes
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
@@ -42,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
     private int IMAGE_GALLERY_REQUEST = 111;
     private  Uri imageUri;
 
-
+private int IMAGE_GALLERAY_REQUEST=111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +105,21 @@ private void showBottomsheetpickphoto() {
             {
                     Toast.makeText(getApplicationContext(),"camera",Toast.LENGTH_SHORT).show();
             });
+<<<<<<< Updated upstream
+=======
+
+    ((view ) view.findViewById(R.id.in_gallery)).setOnclickListener(new view.onclicklistener(){
+        @Override
+                public void onclick(view view){
+            opengellary();
+        bottomSheetDialog.dismiss();
+    }
+        });
+    ((view ) view.findViewById(R.id.in_gallery)).setOnclickListener((view)- {
+            Toast.makeText(getApplicationContext(),"camera", Toast.LENGTH_SHORT).show();
+            bottomSheetDialog.dismiss();
+            });
+>>>>>>> Stashed changes
 
     bottomSheetDialog= new bottomSheetDialog(context: this);
     bottomSheetDialog.setContentView(view);
@@ -127,6 +156,23 @@ private void showBottomsheetpickphoto() {
             }
         });
     }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    private void opengellary() {
+        Intent intent= new Intent();
+        Intent.setType("image/");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.CreateChooser(intent,title: "select image"),IMAGE_GALLERAY_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+    }
+=======
+>>>>>>> Stashed changes
     private void openGallery() {
         Intent intent =new Intent();
         intent.setType("image/");
@@ -163,4 +209,8 @@ private void showBottomsheetpickphoto() {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> e4020a46ded9dd8b3ef2e3a9bb6564bf1f1527b3
+>>>>>>> Stashed changes
 }
