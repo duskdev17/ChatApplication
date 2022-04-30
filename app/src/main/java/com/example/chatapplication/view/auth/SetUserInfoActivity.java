@@ -84,7 +84,7 @@ public class SetUserInfoActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid){
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "UpdateSuccessful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Update Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }

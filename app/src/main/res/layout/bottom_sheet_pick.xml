@@ -30,13 +30,14 @@
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="60dp"
                 android:layout_height="58dp"
-                android:src="@drawable/ic_baseline_camera_alt_24" />
+                android:src="@drawable/gallery_button" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gallery"/>
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/In_camera"
             android:layout_width="wrap_content"
@@ -48,7 +49,7 @@
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_baseline_camera_24"/>
+                android:src="@drawable/camera_button"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

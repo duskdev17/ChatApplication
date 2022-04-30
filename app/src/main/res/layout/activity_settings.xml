@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -288,7 +289,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/colorPrimary"
-                android:text="RoyalChat" />
+                android:text="R O Y A L C H A T"/>
 
         </LinearLayout>
     </ScrollView>

@@ -1,7 +1,7 @@
 //sumi
 package com.example.chatapplication.view.settings;
 
-import androidx.annotation.NonNull;
+import  androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -50,9 +50,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SettingsActivity.this, ProfileActivity.class));
-
             }
-        };
+        });
     }
 
     private void getInfo() {
@@ -60,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String userName = Objects.requireNonNull(documentSnapshot.get("userName")).toString();
-                String imageProfile = documentSnapshot.getString(field:"imageProfile");
+                String imageProfile = documentSnapshot.getString("imageProfile");
 
                 binding.tvUsername.setText(userName);
                 Glide.with(SettingsActivity.this).load(imageProfile).into(binding.imageProfile);
@@ -69,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("Get Data", "onFailure:" + e.getMessage());
+                Log.d("Get Data", "onFailure:" +e.getMessage());
             }
         });
     }

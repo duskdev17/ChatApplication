@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.menu_search : Toast.makeText(MainActivity.this, "Action Search", Toast.LENGTH_LONG).show(); break;
             case R.id.action_new_group: Toast.makeText(MainActivity.this, "Action New Group", Toast.LENGTH_LONG).show(); break;
-            case R.id.action_new_broatcast: Toast.makeText(MainActivity.this, "Action Broatcast", Toast.LENGTH_LONG).show(); break;
+            case R.id.action_new_broatcast: Toast.makeText(MainActivity.this, "Action Broadcast", Toast.LENGTH_LONG).show(); break;
             case R.id.action_royal_web: Toast.makeText(MainActivity.this, "Action Web", Toast.LENGTH_LONG).show(); break;
-            case R.id.action_started_message: Toast.makeText(MainActivity.this, "Action Started Message", Toast.LENGTH_LONG).show(); break;
+            case R.id.action_started_message: Toast.makeText(MainActivity.this, "Action Starred Message", Toast.LENGTH_LONG).show(); break;
             case R.id.action_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
