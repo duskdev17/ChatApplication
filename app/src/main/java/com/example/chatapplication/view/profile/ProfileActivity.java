@@ -16,9 +16,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -45,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firestore;
 
-    private BottomSheetDialog bottomSheetDialog;
+    private BottomSheetDialog bottomSheetDialog ,bsDialogEditName;
     private ProgressDialog progressDialog;
 
     private int IMAGE_GALLERY_REQUEST = 111;
@@ -79,6 +81,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showBottomSheetPickPhoto();
+            }
+        });
+        binding.inEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showBottomSheetEditName();
             }
         });
     }
@@ -115,6 +123,45 @@ public class ProfileActivity extends AppCompatActivity {
 
     bottomSheetDialog.show();
 }
+    private void showBottomSheetEditName(){
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_name, null);
+
+        ((View) view.findViewById(R.id.btn_cancel)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bsDialogEditName.dismiss();
+            }
+        });
+
+        EditText edUserName = view.findViewById(R.id.ed_username);
+        ((View) view.findViewById(R.id.btn_save)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(edUserName.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"Name can't be empty", Toast.LENGTH_SHORT).show();
+                }else {
+                    updateName(edUserName.getText().toString());
+                    bsDialogEditName.dismiss();
+                }
+            }
+        });
+
+       bsDialogEditName = new BottomSheetDialog(this);
+        bsDialogEditName.setContentView(view);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Objects.requireNonNull(bsDialogEditName.getWindow()).addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
+       bsDialogEditName.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                bsDialogEditName = null;
+            }
+        });
+
+       bsDialogEditName.show();
+    }
     private void getInfo() {
         firestore.collection("User").document(firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -206,5 +253,14 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
             }
+    }
+    private void updateName(String newName){
+       firestore.collection("Users").document(firebaseUser.getUid()).update("userName",newName).addOnSuccessListener(new OnSuccessListener<Void>() {
+           @Override
+           public void onSuccess(Void unused) {
+              Toast.makeText(getApplicationContext(),"Update Successful",Toast.LENGTH_SHORT).show();
+              getInfo();
+           }
+       }) ;
     }
 }
