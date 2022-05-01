@@ -4,14 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +30,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
+import com.example.chatapplication.common.Common;
 import com.example.chatapplication.databinding.ActivityProfileBinding;
+import com.example.chatapplication.view.startup.SplashScreenActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -89,6 +96,23 @@ public class ProfileActivity extends AppCompatActivity {
                 showBottomSheetEditName();
             }
         });
+        binding.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.imageProfile.invalidate();
+                Drawable dr = binding.imageProfile.getDrawable();
+                Common.IMAGE_BITMAP = ((GlideBitmapDrawable) dr.getDrawable().getCurrent()).getBitmap();
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ProfileActivity.this, binding.imageProfile"image");
+                Intent intent = new Intent(ProfileActivity.this, viewImageActivity.class);
+                startActivity(intent, activityOptionsCompat.toBundle());
+            }
+        });
+        binding.btnLogOut.setOnCickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+            showDialogSingOut();
+            }
+            });
     }
 
     private void showBottomSheetPickPhoto() {
@@ -262,5 +286,25 @@ public class ProfileActivity extends AppCompatActivity {
               getInfo();
            }
        }) ;
+    }
+    private void  showDialogSingOut(){
+        final AlertDialog.Builder builder =new AlertDialog.Builder( ProfileActivity.this);
+        builder.setMessage("Do you want Log out from RoyalChat?");
+        builder.setPositiveButton("Sign out", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialog.cancel();
+              FirebaseAuth.getInstance().signOut();
+              startActivity(new Intent(ProfileActivity.this, SplashScreenActivity.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog =builder.create();
+        alertDialog.show();
     }
 }

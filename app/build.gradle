@@ -65,5 +65,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
 
     // Zoom ImageView
+    implementation 'com.jsibbold:zoomage:1.2.0'
 
 }

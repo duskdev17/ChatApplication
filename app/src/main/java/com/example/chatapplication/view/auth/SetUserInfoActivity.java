@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySetUserInfoBinding;
-import com.example.chatapplication.model.user.Users;
+import com.example.chatapplication.model.Users.users;
 import com.example.chatapplication.view.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,7 +66,7 @@ public class SetUserInfoActivity extends AppCompatActivity {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     if (firebaseUser != null) {
         String userId = firebaseUser.getUid();
-        Users users = new Users(userId,
+        users users = new users(userId,
                 binding.edName.getText().toString(),
                 firebaseUser.getPhoneNumber(),
                 "",
