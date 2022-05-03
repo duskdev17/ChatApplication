@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
         <activity
+            android:name=".view.contact.ContactsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.contact.ContactsMainActivity"
             android:exported="false" />
         <activity

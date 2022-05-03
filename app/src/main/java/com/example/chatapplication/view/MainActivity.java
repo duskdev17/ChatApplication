@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
@@ -19,6 +20,7 @@ import com.example.chatapplication.databinding.ActivityMainBinding;
 import com.example.chatapplication.menu.CallsFragment;
 import com.example.chatapplication.menu.ChatsFragment;
 import com.example.chatapplication.menu.StatusFragment;
+import com.example.chatapplication.view.contact.ContactsActivity;
 import com.example.chatapplication.view.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -102,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.menu_search : Toast.makeText(MainActivity.this, "Action Search", Toast.LENGTH_LONG).show(); break;
             case R.id.action_new_group: Toast.makeText(MainActivity.this, "Action New Group", Toast.LENGTH_LONG).show(); break;
-            case R.id.action_new_broatcast: Toast.makeText(MainActivity.this, "Action Broadcast", Toast.LENGTH_LONG).show(); break;
-            case R.id.action_royal_web: Toast.makeText(MainActivity.this, "Action Web", Toast.LENGTH_LONG).show(); break;
+            case R.id.action_new_broadcast: Toast.makeText(MainActivity.this, "Action Broadcast", Toast.LENGTH_LONG).show(); break;
+            case R.id.action_royalchat_web: Toast.makeText(MainActivity.this, "Action Web", Toast.LENGTH_LONG).show(); break;
             case R.id.action_started_message: Toast.makeText(MainActivity.this, "Action Starred Message", Toast.LENGTH_LONG).show(); break;
             case R.id.action_settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
@@ -119,7 +121,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 switch (index){
-                    case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_chat_24)); break;
+                    case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_chat_24));
+                                binding.fabAction.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        startActivity(new Intent(MainActivity.this, ContactsActivity.class));
+                                    }
+                                });
+
+                    break;
                     case 1 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_camera_24)); break;
                     case 2 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_call_24)); break;
                 }

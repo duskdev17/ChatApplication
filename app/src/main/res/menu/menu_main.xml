@@ -11,18 +11,18 @@
         android:id="@+id/action_more">
         <item
             android:id="@+id/action_new_group"
-            android:title="New group" />
+            android:title="Group Chat" />
         <item
-            android:id="@+id/action_new_broatcast"
-            android:title="New broatcast"/>
+            android:id="@+id/action_new_broadcast"
+            android:title="Broadcast"/>
         <item
-            android:id="@+id/action_royal_web"
-            android:title="RoyalChat web"/>
+            android:id="@+id/action_royalchat_web"
+            android:title="RoyalChat Web"/>
         <item
             android:id="@+id/action_started_message"
             android:title="Started message"/>
         <item
             android:id="@+id/action_settings"
-            android:title="Setting"/>
+            android:title="Settings"/>
     </group>
 </menu>

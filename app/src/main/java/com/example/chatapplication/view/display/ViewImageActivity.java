@@ -16,6 +16,7 @@ public class ViewImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_view_image);
+
         binding.imageView.setImageBitmap(Common.IMAGE_BITMAP);
     }
 }

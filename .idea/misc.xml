@@ -7,6 +7,7 @@
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.157" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.1" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_vpn_key_24.xml" value="0.1515" />
+        <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_contacts.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_contacts_main.xml" value="0.25416666666666665" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_phone_login.xml" value="0.264" />
@@ -24,7 +25,7 @@
         <entry key="..\:/ChatApplication/app/src/main/res/layout/fragment_status.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/layout_call_list.xml" value="0.2" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/layout_chat_list.xml" value="0.264" />
-        <entry key="..\:/ChatApplication/app/src/main/res/layout/layout_contact_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/ChatApplication/app/src/main/res/layout/layout_contact_item.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/menu/menu_main.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1515" />
         <entry key="..\:/ChatApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

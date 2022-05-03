@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySetUserInfoBinding;
-import com.example.chatapplication.model.Users.users;
+import com.example.chatapplication.model.user.Users;
 import com.example.chatapplication.view.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -66,7 +66,7 @@ public class SetUserInfoActivity extends AppCompatActivity {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     if (firebaseUser != null) {
         String userId = firebaseUser.getUid();
-        users users = new users(userId,
+        Users users = new Users(userId,
                 binding.edName.getText().toString(),
                 firebaseUser.getPhoneNumber(),
                 "",

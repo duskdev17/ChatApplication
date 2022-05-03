@@ -16,6 +16,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -32,6 +33,7 @@ import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
 import com.example.chatapplication.common.Common;
 import com.example.chatapplication.databinding.ActivityProfileBinding;
+import com.example.chatapplication.view.display.ViewImageActivity;
 import com.example.chatapplication.view.startup.SplashScreenActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -84,69 +86,66 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void initActionClick() {
-        binding.fabCamera.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+        binding.fabCamera.setOnClickListener((v) -> {
                 showBottomSheetPickPhoto();
-            }
         });
-        binding.inEditName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        binding.InEditName.setOnClickListener((v) -> {
                 showBottomSheetEditName();
-            }
         });
-        binding.imageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        binding.imageProfile.setOnClickListener((v) -> {
                 binding.imageProfile.invalidate();
                 Drawable dr = binding.imageProfile.getDrawable();
-                Common.IMAGE_BITMAP = ((GlideBitmapDrawable) dr.getDrawable().getCurrent()).getBitmap();
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ProfileActivity.this, binding.imageProfile"image");
-                Intent intent = new Intent(ProfileActivity.this, viewImageActivity.class);
+                Common.IMAGE_BITMAP = ((BitmapDrawable)dr.getCurrent()).getBitmap();
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ProfileActivity.this, binding.imageProfile,"image");
+                Intent intent = new Intent(ProfileActivity.this, ViewImageActivity.class);
                 startActivity(intent, activityOptionsCompat.toBundle());
-            }
         });
-        binding.btnLogOut.setOnCickListener(new View.OnClickListener() {
+
+        binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-            showDialogSingOut();
+                showDialogSingOut();
             }
-            });
+        });
     }
 
     private void showBottomSheetPickPhoto() {
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.bottom_sheet_pick, null);
 
-    ((View) view.findViewById(R.id.In_gallery)).setOnClickListener(new View.OnClickListener() {
+        ((View) view.findViewById(R.id.In_gallery)).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             openGallery();
             bottomSheetDialog.dismiss();
+            }
+        });
+        ((View) view.findViewById(R.id.In_camera)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Camera", Toast.LENGTH_SHORT).show();
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(view);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Objects.requireNonNull(bottomSheetDialog.getWindow()).addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-    });
-    ((View) view.findViewById(R.id.In_camera)).setOnClickListener((View) -> {
-                    Toast.makeText(getApplicationContext(),"camera",Toast.LENGTH_SHORT).show();
-                    bottomSheetDialog.dismiss();
-    });
 
+        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                bottomSheetDialog = null;
+            }
+        });
 
-    bottomSheetDialog = new BottomSheetDialog(this);
-    bottomSheetDialog.setContentView(view);
-
-    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        Objects.requireNonNull(bottomSheetDialog.getWindow()).addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    }
-
-    bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-        @Override
-        public void onDismiss(DialogInterface dialogInterface) {
-            bottomSheetDialog = null;
-        }
-    });
-
-    bottomSheetDialog.show();
+        bottomSheetDialog.show();
 }
+
     private void showBottomSheetEditName(){
         @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_name, null);
 
@@ -170,7 +169,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-       bsDialogEditName = new BottomSheetDialog(this);
+        bsDialogEditName = new BottomSheetDialog(this);
         bsDialogEditName.setContentView(view);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -186,8 +185,9 @@ public class ProfileActivity extends AppCompatActivity {
 
        bsDialogEditName.show();
     }
+
     private void getInfo() {
-        firestore.collection("User").document(firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        firestore.collection("Users").document(firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String username = documentSnapshot.getString("userName");
@@ -214,7 +214,6 @@ public class ProfileActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "select image"), IMAGE_GALLERY_REQUEST);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -234,6 +233,7 @@ public class ProfileActivity extends AppCompatActivity {
              }*/
             }
         }
+
     private String getFileExtention(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
@@ -257,14 +257,15 @@ public class ProfileActivity extends AppCompatActivity {
                         final String sdownload_url = String.valueOf(downloadUrl);
 
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("imageProfile",sdownload_url);
-                        progressDialog.dismiss();
+                        hashMap.put("imageProfile", sdownload_url);
 
+                        progressDialog.dismiss();
                         firestore.collection("Users").document (firebaseUser.getUid()).update(hashMap)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid){
                                     Toast.makeText(getApplicationContext(),"uploaded successfully",Toast.LENGTH_SHORT ).show();
+
                                     getInfo();
                                 }
                             });
@@ -278,6 +279,7 @@ public class ProfileActivity extends AppCompatActivity {
                 });
             }
     }
+
     private void updateName(String newName){
        firestore.collection("Users").document(firebaseUser.getUid()).update("userName",newName).addOnSuccessListener(new OnSuccessListener<Void>() {
            @Override
@@ -285,26 +287,28 @@ public class ProfileActivity extends AppCompatActivity {
               Toast.makeText(getApplicationContext(),"Update Successful",Toast.LENGTH_SHORT).show();
               getInfo();
            }
-       }) ;
+       });
     }
-    private void  showDialogSingOut(){
-        final AlertDialog.Builder builder =new AlertDialog.Builder( ProfileActivity.this);
+
+    private void showDialogSingOut(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder( ProfileActivity.this);
         builder.setMessage("Do you want Log out from RoyalChat?");
         builder.setPositiveButton("Sign out", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-              FirebaseAuth.getInstance().signOut();
-              startActivity(new Intent(ProfileActivity.this, SplashScreenActivity.class));
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ProfileActivity.this, SplashScreenActivity.class));
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
-        AlertDialog alertDialog =builder.create();
+
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 }
