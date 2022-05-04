@@ -102,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.menu_search : Toast.makeText(MainActivity.this, "Action Search", Toast.LENGTH_LONG).show(); break;
+            case R.id.menu_search : Toast.makeText(MainActivity.this, "Action Search", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, ContactsActivity.class));
+                break;
             case R.id.action_new_group: Toast.makeText(MainActivity.this, "Action New Group", Toast.LENGTH_LONG).show(); break;
             case R.id.action_new_broadcast: Toast.makeText(MainActivity.this, "Action Broadcast", Toast.LENGTH_LONG).show(); break;
             case R.id.action_royalchat_web: Toast.makeText(MainActivity.this, "Action Web", Toast.LENGTH_LONG).show(); break;
@@ -120,17 +122,18 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                switch (index){
+                switch(index){
                     case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_chat_24));
                                 binding.fabAction.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View view) {
+                                    public void onClick(View v) {
                                         startActivity(new Intent(MainActivity.this, ContactsActivity.class));
                                     }
                                 });
 
                     break;
-                    case 1 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_camera_24)); break;
+                    case 1 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_camera_24));
+                    break;
                     case 2 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_call_24)); break;
                 }
                 binding.fabAction.show();

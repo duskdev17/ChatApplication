@@ -190,11 +190,11 @@ public class ProfileActivity extends AppCompatActivity {
         firestore.collection("Users").document(firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String username = documentSnapshot.getString("userName");
+                String userName = documentSnapshot.getString("userName");
                 String userPhone = documentSnapshot.getString("userPhone");
                 String imageProfile = documentSnapshot.getString("imageProfile");
 
-                binding.tvUsername.setText(username);
+                binding.tvUsername.setText(userName);
                 binding.tvPhone.setText(userPhone);
                 Glide.with(ProfileActivity.this).load(imageProfile).into(binding.imageProfile);
 
@@ -264,7 +264,7 @@ public class ProfileActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid){
-                                    Toast.makeText(getApplicationContext(),"uploaded successfully",Toast.LENGTH_SHORT ).show();
+                                    Toast.makeText(getApplicationContext(),"Uploaded Successfully",Toast.LENGTH_SHORT ).show();
 
                                     getInfo();
                                 }
@@ -273,7 +273,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener(){
                     @Override
                     public void onFailure(@NonNull Exception e){
-                        Toast.makeText(getApplicationContext(),"upload failed",Toast.LENGTH_SHORT ).show();
+                        Toast.makeText(getApplicationContext(),"Upload Failed", Toast.LENGTH_SHORT ).show();
                         progressDialog.dismiss();
                     }
                 });
