@@ -61,9 +61,7 @@ public class ContactsActivity extends AppCompatActivity {
                     user.setUserName(userName);
                     user.setImageProfile(imageUrl);
 
-                    if(userID != null && userID.equals(firebaseUser.getUid())){
-                        list.add(user);
-                    }
+                    list.add(user);
                 }
 
                 adapter = new ContactsAdapter(list,ContactsActivity.this);

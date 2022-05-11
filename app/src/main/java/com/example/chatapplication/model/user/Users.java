@@ -13,7 +13,6 @@ public class Users {
     private String bio;
 
     public Users(){
-
     }
 
     public Users(String userId, String userName, String userPhone, String imageProfile, String imageCover, String email, String dateOfBirth, String gender, String status, String bio) {
