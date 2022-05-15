@@ -1,6 +1,7 @@
 package com.example.chatapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.chatapplication.R;
+import com.example.chatapplication.model.ChatList;
 import com.example.chatapplication.model.user.Users;
+import com.example.chatapplication.view.chats.ChatsActivity;
 
 import java.util.List;
 
@@ -36,12 +39,22 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Users user = list.get(position);
+        final Users user = list.get(position);
 
         holder.username.setText(user.getUserName());
         holder.desc.setText(user.getBio());
 
         Glide.with(context).load(user.getImageProfile()).into(holder.imageProfile);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ChatsActivity.class)
+                        .putExtra("userID", user.getUserId())
+                        .putExtra("userName", user.getUserName())
+                        .putExtra("userProfile", user.getImageProfile()));
+            }
+        });
     }
 
     @Override
