@@ -25,10 +25,10 @@ public class ChatsActivity extends AppCompatActivity {
         String userID = intent.getStringExtra("userID");
         String userProfile = intent.getStringExtra("userProfile");
 
-        if(userID!=null){
+        //if(userID!=null){
             binding.tvUsername.setText(userName);
             Glide.with(this).load(userProfile).into(binding.imageProfile);
-        }
+        //}
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
