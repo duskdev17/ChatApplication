@@ -60,14 +60,15 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/ln_action"
         android:layout_below="@+id/toolbar" />
 
     <LinearLayout
+        android:id="@+id/ln_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -127,10 +128,17 @@
                     android:layout_gravity="center_vertical"/>
 
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@android:color/white"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_send_24"/>
 
+
+    </LinearLayout>
 </RelativeLayout>
 </layout>

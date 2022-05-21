@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ChatApplication/app/src/main/res/drawable/bg_text_chat_left.xml" value="0.152" />
+        <entry key="..\:/ChatApplication/app/src/main/res/drawable/bg_text_chat_right.xml" value="0.167" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.149" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.157" />
         <entry key="..\:/ChatApplication/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.1" />
@@ -22,6 +24,8 @@
         <entry key="..\:/ChatApplication/app/src/main/res/layout/activity_welcome_screen.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/bottom_sheet_edit_name.xml" value="0.25416666666666665" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/bottom_sheet_pick.xml" value="0.25416666666666665" />
+        <entry key="..\:/ChatApplication/app/src/main/res/layout/chat_item_left.xml" value="0.264" />
+        <entry key="..\:/ChatApplication/app/src/main/res/layout/chat_item_right.xml" value="0.25416666666666665" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/fragment_calls.xml" value="0.264" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/fragment_chats.xml" value="0.24954710144927536" />
         <entry key="..\:/ChatApplication/app/src/main/res/layout/fragment_status.xml" value="0.264" />
