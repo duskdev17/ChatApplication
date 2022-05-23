@@ -42,7 +42,7 @@ public class ChatsActivity extends AppCompatActivity {
     private ActivityChatsBinding binding;
     private FirebaseUser firebaseUser;
     private DatabaseReference reference;
-    private String receiverID;
+    private String receiverID = "";
     private ChatsAdapter adapter;
     private List<Chats>list;
 
@@ -141,7 +141,7 @@ public class ChatsActivity extends AppCompatActivity {
 
         reference.child("Chats").push().setValue(chats).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void unused) {
+            public void onSuccess(Void aVoid) {
                 Log.d("Send", "onSuccess: ");
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -152,11 +152,11 @@ public class ChatsActivity extends AppCompatActivity {
         });
 
         //Add to ChatList
-        DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("ChatList").child(firebaseUser.getUid()).child(receiverID);
+        DatabaseReference chatRef1 = FirebaseDatabase.getInstance("https://chatapplication-a9099-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ChatList").child(firebaseUser.getUid()).child(receiverID);
         chatRef1.child("chatid").setValue(receiverID);
 
         //Add to ChatList
-        DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("ChatList").child(receiverID).child(firebaseUser.getUid());
+        DatabaseReference chatRef2 = FirebaseDatabase.getInstance("https://chatapplication-a9099-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ChatList").child(receiverID).child(firebaseUser.getUid());
         chatRef2.child("chatid").setValue(firebaseUser.getUid());
 
     }
@@ -172,7 +172,7 @@ public class ChatsActivity extends AppCompatActivity {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Chats chats = snapshot.getValue(Chats.class);
 
-                        if(chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)) {
+                        if(chats != null && chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)) {
                             list.add(chats);
                         }
                     }
@@ -194,7 +194,5 @@ public class ChatsActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 }
