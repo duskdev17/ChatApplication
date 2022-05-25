@@ -30,7 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.ref.Reference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,7 +41,7 @@ public class ChatsActivity extends AppCompatActivity {
     private ActivityChatsBinding binding;
     private FirebaseUser firebaseUser;
     private DatabaseReference reference;
-    private String receiverID = "";
+    private String receiverID;
     private ChatsAdapter adapter;
     private List<Chats>list;
 
@@ -152,11 +151,11 @@ public class ChatsActivity extends AppCompatActivity {
         });
 
         //Add to ChatList
-        DatabaseReference chatRef1 = FirebaseDatabase.getInstance("https://chatapplication-a9099-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ChatList").child(firebaseUser.getUid()).child(receiverID);
+        DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("ChatList").child(firebaseUser.getUid()).child(receiverID);
         chatRef1.child("chatid").setValue(receiverID);
 
         //Add to ChatList
-        DatabaseReference chatRef2 = FirebaseDatabase.getInstance("https://chatapplication-a9099-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ChatList").child(receiverID).child(firebaseUser.getUid());
+        DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("ChatList").child(receiverID).child(firebaseUser.getUid());
         chatRef2.child("chatid").setValue(firebaseUser.getUid());
 
     }

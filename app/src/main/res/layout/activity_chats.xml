@@ -54,9 +54,9 @@
                     android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="last seen today at 9:00am"
                     android:textColor="@android:color/white"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:text="last seen today at 9:00am"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>

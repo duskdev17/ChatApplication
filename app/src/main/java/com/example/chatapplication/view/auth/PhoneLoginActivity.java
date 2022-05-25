@@ -77,7 +77,8 @@ public class PhoneLoginActivity extends AppCompatActivity implements AdapterView
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(binding.btnNext.getText().toString().equals("Next")) {
+                //if(binding.btnNext.getText().toString().equals("Next")) {
+                if(binding.btnNext.getText().toString().equals("Send Code")) {
                     progressDialog.setMessage("Please Wait");
                     progressDialog.show();
 

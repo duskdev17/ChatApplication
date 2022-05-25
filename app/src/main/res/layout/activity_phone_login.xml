@@ -99,7 +99,7 @@
             android:inputType="number"
             android:hint="Enter Code" />
     </LinearLayout>
-    
+
     <Button
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
@@ -108,8 +108,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:background="@color/colorAccent"
-        android:textColor="@android:color/white"
-        android:text="Next"/>
+        android:text="Send Code"
+        android:textColor="@android:color/white" />
 </RelativeLayout>
 
 </layout>
