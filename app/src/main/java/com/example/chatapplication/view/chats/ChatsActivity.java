@@ -43,7 +43,7 @@ public class ChatsActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private String receiverID;
     private ChatsAdapter adapter;
-    private List<Chats>list;
+    private List<Chats> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +60,10 @@ public class ChatsActivity extends AppCompatActivity {
 
 
         //showing selected users name and image
-        //if(receiverID!=null){
+        if(receiverID != null){
             binding.tvUsername.setText(userName);
             Glide.with(this).load(userProfile).into(binding.imageProfile);
-        //}
+        }
 
         //back button of chat screen
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
@@ -75,23 +75,24 @@ public class ChatsActivity extends AppCompatActivity {
 
         binding.edMessage.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //an option to show mic icon when text box is empty, when filled shows send icon
-                if(TextUtils.isEmpty(binding.edMessage.getText().toString())){
+                //if(TextUtils.isEmpty(binding.edMessage.getText().toString())){
+                    //binding.btnSend.setImageDrawable(getDrawable(R.drawable.ic_baseline_send_24));
+                //}
+                //else {
                     binding.btnSend.setImageDrawable(getDrawable(R.drawable.ic_baseline_send_24));
-                }
-                else {
-                    binding.btnSend.setImageDrawable(getDrawable(R.drawable.ic_baseline_send_24));
-                }
+                //}
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -104,13 +105,12 @@ public class ChatsActivity extends AppCompatActivity {
         binding.recyclerView.setLayoutManager(layoutManager);
 
         readChats();
-
     }
 
     private void initBtnClick(){
         binding.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if(!TextUtils.isEmpty(binding.edMessage.getText().toString())){
                     sendTextMessage(binding.edMessage.getText().toString());
 
@@ -165,17 +165,17 @@ public class ChatsActivity extends AppCompatActivity {
         try {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
             reference.child("Chats").addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     list.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Chats chats = snapshot.getValue(Chats.class);
-
                         if(chats != null && chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)) {
                             list.add(chats);
                         }
                     }
-                    if(adapter!=null){
+                    if(adapter != null){
                         adapter.notifyDataSetChanged();
                     }
                     else{
@@ -186,7 +186,6 @@ public class ChatsActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
         }

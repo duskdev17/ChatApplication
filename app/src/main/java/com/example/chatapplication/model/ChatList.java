@@ -7,7 +7,7 @@ public class ChatList {
     private String date;
     private String urlProfile;
 
-    public ChatList(CallList jannat){
+    public ChatList(){
     }
 
     public ChatList(String userID,String userName,String description,String date,String urlProfile){

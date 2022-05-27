@@ -56,12 +56,15 @@ public class ContactsActivity extends AppCompatActivity {
                     String desc = snapshots.getString("bio");
 
                     Users user = new Users();
-                    user.setUserId(userID);
+                    user.setUserID(userID);
                     user.setBio(desc);
                     user.setUserName(userName);
                     user.setImageProfile(imageUrl);
 
-                    list.add(user);
+
+                    if(userID!=null & !userID.equals(firebaseUser.getUid())){
+                        list.add(user);
+                    }
                 }
 
                 adapter = new ContactsAdapter(list,ContactsActivity.this);

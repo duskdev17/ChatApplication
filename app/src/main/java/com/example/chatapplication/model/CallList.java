@@ -12,7 +12,7 @@ public class CallList {
 
     }
 
-    public CallList(String userID,String userName, String date, String urlProfile,String callType ){
+    public CallList(String userID, String userName, String date, String urlProfile, String callType ){
         this.userID = userID;
         this.userName = userName;
         this.date = date;

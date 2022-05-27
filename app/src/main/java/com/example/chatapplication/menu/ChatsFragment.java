@@ -37,8 +37,8 @@ public class ChatsFragment extends Fragment {
         // list.add(new ChatList("22","Sumi","Hi, I'm Sumi","25/03/2022","https://dp.profilepics.in/profile_pictures/cartoon_girls/cartoon-profile-pic-03.jpg"));
         //list.add(new ChatList("33","Anik","Yo, I'm Anik","18/03/2022","https://w0.peakpx.com/wallpaper/538/896/HD-wallpaper-neon-mask-abstracto-anime-azul-chaqueta-morado-the-purge.jpg"));
         //list.add(new ChatList("44","Tamanna","Hey I'm Tamanna","09/03/2022","https://images.hdqwalls.com/download/anime-girl-art-kz-1125x2436.jpg"));
-//
-  //      recyclerView.setAdapter(new ChatListAdapter(list, getContext()));
+        //
+        //recyclerView.setAdapter(new ChatListAdapter(list, getContext()));
 
         return view;
         }

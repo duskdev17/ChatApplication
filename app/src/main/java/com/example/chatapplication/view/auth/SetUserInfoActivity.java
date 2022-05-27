@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SetUserInfoActivity extends AppCompatActivity {
-//sumi
+
     private ActivitySetUserInfoBinding binding;
     private ProgressDialog progressDialog;
 
@@ -65,8 +65,8 @@ public class SetUserInfoActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     if (firebaseUser != null) {
-        String userId = firebaseUser.getUid();
-        Users users = new Users(userId,
+        String userID = firebaseUser.getUid();
+        Users users = new Users(userID,
                 binding.edName.getText().toString(),
                 firebaseUser.getPhoneNumber(),
                 "",
