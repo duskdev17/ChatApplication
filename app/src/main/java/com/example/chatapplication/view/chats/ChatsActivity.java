@@ -165,7 +165,6 @@ public class ChatsActivity extends AppCompatActivity {
         try {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
             reference.child("Chats").addValueEventListener(new ValueEventListener() {
-                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     list.clear();

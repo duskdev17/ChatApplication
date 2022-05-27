@@ -60,13 +60,12 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/ln_action"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@id/toolbar" />
 
     <LinearLayout
         android:id="@+id/ln_action"
