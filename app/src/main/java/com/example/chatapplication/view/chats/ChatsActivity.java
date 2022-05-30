@@ -100,6 +100,7 @@ public class ChatsActivity extends AppCompatActivity {
         initBtnClick();
 
         list = new ArrayList<>();
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, true);
         layoutManager.setStackFromEnd(true);
         binding.recyclerView.setLayoutManager(layoutManager);
@@ -184,7 +185,7 @@ public class ChatsActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
         }
